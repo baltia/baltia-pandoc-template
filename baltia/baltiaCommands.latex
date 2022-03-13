@@ -1,0 +1,32 @@
+\newcommand{\Bbrs}{Bbr.\textsuperscript{2} }
+\newcommand{\bbrs}{Bbr.\textsuperscript{2} }
+%
+\definecolor{red}{RGB}{186,25,4}
+\definecolor{black}{RGB}{23,23,23}
+\definecolor{silver}{RGB}{240,237,236}
+%
+\newcommand{\toc}{\tableofcontents}
+%
+\newcommand{\nextVote}[1]{\hfill\small[\textit{Nächste Abstimmung im \textbf{#1}}]\normalsize}
+\newcommand{\neuannahme}[1]{\hfill\small[\textit{Neuannahme im \textbf{#1}}]\normalsize}
+%
+\newcommand{\signature}[1]{
+\noindent
+\begin{minipage}{.5\textwidth}
+\centering\sc\small
+\vspace{1cm}
+\par\noindent\rule{0.7\textwidth}{0.4pt}
+
+#1
+
+\end{minipage}
+}
+%
+\newcommand{\emptyLine}{%
+\vspace{0.5cm}
+\par\noindent\rule{0.8\textwidth}{0.4pt}
+}
+%
+\def\numericToday{\leavevmode\hbox{\twodigits\day.\twodigits\month.\the\year}}
+\def\twodigits#1{\ifnum#1<10 0\fi\the#1}
+%

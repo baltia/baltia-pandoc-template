@@ -1,0 +1,46 @@
+$-- \usepackage{fontspec}
+$-- \usepackage{fvextra}
+$-- 
+$-- $-- \directlua{luaotfload.add_fallback(
+$-- $--             "emojiFallback",
+$-- $--              {"AppleColorEmoji:mode=harf;"}
+$-- $-- $--          {"NotoColorEmoji:mode=harf;"}
+$-- $--           )}
+$-- 
+$-- $if(noto)$
+$--     \usepackage{noto}
+$--     \setmainfont[]{Noto Serif}
+$--     $-- \setmainfont[RawFeature={fallback=emojiFallback}]{Noto Serif}
+$-- $else$
+$--     $-- \usepackage{lmodern}
+$--     $-- Working Default font with SmallCaps
+$--     $-- \setmainfont[
+$--     $--   RawFeature={fallback=emojiFallback},
+$--     $--   SmallCapsFont={Latin Modern Roman Caps},
+$--     $--   SmallCapsFeatures={Letters=SmallCaps}
+$--     $-- ]{Latin Modern Roman}
+$--     \setmainfont[
+$--       SmallCapsFont={Latin Modern Roman Caps},
+$--       SmallCapsFeatures={Letters=SmallCaps}
+$--     ]{Latin Modern Roman}
+$-- $endif$
+$-- 
+$-- $-- \setmonofont{FiraCode-VF}[
+$-- $--   RawFeature={fallback=emojiFallback},
+$-- $--   Contextuals=Alternate  % Activate the calt feature
+$-- $-- ]
+
+$-- \setmonofont{FiraCode-VF}[%
+$--   Contextuals=Alternate % Activate the calt feature
+$-- ]%
+
+
+$if(noto)$
+  \usepackage{noto}
+$else$
+ \usepackage{lmodern}
+$endif$
+
+$if(sans)$
+ \renewcommand*\familydefault{\sfdefault}
+$endif$

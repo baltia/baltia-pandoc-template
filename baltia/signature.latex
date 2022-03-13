@@ -1,0 +1,12 @@
+\noindent
+$for(signature)$
+\signature{
+$if(signature.top)$
+$signature.top$
+
+$if(signature.bottom)$$signature.bottom$$endif$
+$else$
+$signature$
+$endif$
+}
+$endfor$

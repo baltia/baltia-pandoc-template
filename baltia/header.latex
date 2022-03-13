@@ -1,0 +1,54 @@
+$if(hide-header)$
+$else$
+\noindent
+\begin{minipage}{.6\textwidth}
+    {\LARGE
+        Katholische Deutsche\\
+        Studentenverbindung\\
+        Baltia (Danzig) zu Aachen im CV
+        \par}
+\end{minipage}
+\begin{minipage}{.4\textwidth}
+    \hfill%
+$-- could probably bo done smarter but I don't care anymore
+    \begin{tikzpicture}
+        \begin{scope}
+            \node [inner sep=0pt] {
+                \def\svgwidth{2.75cm}
+                $if(templates-path)$
+                    \import{$templates-path$}{baltia/wappen.pdf_tex}
+                $else$
+                    \import{./}{baltia/wappen.pdf_tex}
+                $endif$
+            };
+        \end{scope}
+    \end{tikzpicture}
+\end{minipage}
+
+\vspace{0.5cm}
+
+$-- Author & Date
+\begin{minipage}{.5\textwidth}
+\centering
+     $if(author)$
+         {\large \textbf{\textsc{--- $author$ ---}} \par}
+     $else$
+         {\large \textbf{\textsc{}} \par}
+     $endif$
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+\hfill
+   $if(date)$
+        {\large \textsc{$date$} \par}
+    $endif$
+\end{minipage}%
+
+\vspace{0.8cm}
+$endif$
+%
+$if(title)$
+\title{$title$}
+{\noindent\large \textbf{$title$} \par}
+\vspace{0.3cm}
+$endif$
+%
