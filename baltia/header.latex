@@ -16,7 +16,7 @@ $-- could probably bo done smarter but I don't care anymore
             \node [inner sep=0pt] {
                 \def\svgwidth{2.75cm}
                 $if(templates-path)$
-                    \import{$templates-path$}{baltia/wappen.pdf_tex}
+                    \import{$templates-path$}{baltia-pandoc-template/baltia/wappen.pdf_tex}
                 $else$
                     \import{./}{baltia/wappen.pdf_tex}
                 $endif$
