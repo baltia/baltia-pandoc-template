@@ -30,3 +30,24 @@
 \def\numericToday{\leavevmode\hbox{\twodigits\day.\twodigits\month.\the\year}}
 \def\twodigits#1{\ifnum#1<10 0\fi\the#1}
 %
+\newcommand{\Bl}{
+\def\svgwidth{1.25em}
+\raisebox{-.2\height}{%
+$if(templates-path)$
+    \import{$templates-path$}{baltia-pandoc-template/baltia/ZirkelBaltia.pdf_tex}
+$else$
+    \import{./}{baltia/ZirkelBaltia.pdf_tex}
+$endif$
+}
+}
+%
+\newcommand{\bl}{%
+\def\svgwidth{1.25em}
+\raisebox{-.2\height}{%
+$if(templates-path)$
+    \import{$templates-path$}{baltia-pandoc-template/baltia/ZirkelBaltia2.pdf_tex}
+$else$
+    \import{./}{baltia/ZirkelBaltia2.pdf_tex}
+$endif$
+}
+}
