@@ -77,6 +77,9 @@ $else$
 \def\arraystretch{1.5}
 $endif$
 
+$-- enables highlighting with ==text== in markdown 
+\usepackage{soul}
+
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 
