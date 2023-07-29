@@ -111,7 +111,7 @@ $if(colorlinks)$
 $else$
   hidelinks,
 $endif$
-  pdfcreator={BaltenTypewriter by mastermakrela via pandoc @$source$@}
+  pdfcreator={BaltenTypewriter by mastermakrela via pandoc}
 }
 
 \urlstyle{same} % disable monospaced font for URLs
