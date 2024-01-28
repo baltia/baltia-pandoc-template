@@ -51,3 +51,14 @@ $else$
 $endif$
 }
 }
+%
+\newcommand{\bL}{%
+\def\svgwidth{1.25em}
+\raisebox{-.2\height}{%
+$if(templates-path)$
+    \import{$templates-path$}{baltia-pandoc-template/baltia/zirkel_duenn.pdf_tex.pdf_tex}
+$else$
+    \import{./}{baltia/zirkel_duenn.pdf_tex.pdf_tex}
+$endif$
+}
+}
