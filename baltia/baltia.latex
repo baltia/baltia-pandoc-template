@@ -259,6 +259,9 @@ $if(section-prefix)$
 \renewcommand{\numberline}[1]{#1~}
 $endif$
 
+% Fix for Pandoc 3.8.2+ longtable bug - per GitHub issue #11201
+\newcounter{none}
+
 \begin{document}
 $-- Replace TOC title if avaliable or use default
 $if(toc-title)$
