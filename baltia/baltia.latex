@@ -15,8 +15,11 @@ $-- \documentclass[a4paper, table]{scrartcl}
 \usepackage{iftex}
 \usepackage{tikz}
 \ifPDFTeX
+  \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
+  \input{glyphtounicode}
+  \pdfgentounicode=1
 \else % if luatex or xetex
   \usepackage{unicode-math}
   \defaultfontfeatures{Scale=MatchLowercase}
