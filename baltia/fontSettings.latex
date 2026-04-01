@@ -1,46 +1,98 @@
-$-- \usepackage{fontspec}
-$-- \usepackage{fvextra}
-$-- 
-$-- $-- \directlua{luaotfload.add_fallback(
-$-- $--             "emojiFallback",
-$-- $--              {"AppleColorEmoji:mode=harf;"}
-$-- $-- $--          {"NotoColorEmoji:mode=harf;"}
-$-- $--           )}
-$-- 
-$-- $if(noto)$
-$--     \usepackage{noto}
-$--     \setmainfont[]{Noto Serif}
-$--     $-- \setmainfont[RawFeature={fallback=emojiFallback}]{Noto Serif}
-$-- $else$
-$--     $-- \usepackage{lmodern}
-$--     $-- Working Default font with SmallCaps
-$--     $-- \setmainfont[
-$--     $--   RawFeature={fallback=emojiFallback},
-$--     $--   SmallCapsFont={Latin Modern Roman Caps},
-$--     $--   SmallCapsFeatures={Letters=SmallCaps}
-$--     $-- ]{Latin Modern Roman}
-$--     \setmainfont[
-$--       SmallCapsFont={Latin Modern Roman Caps},
-$--       SmallCapsFeatures={Letters=SmallCaps}
-$--     ]{Latin Modern Roman}
-$-- $endif$
-$-- 
-$-- $-- \setmonofont{FiraCode-VF}[
-$-- $--   RawFeature={fallback=emojiFallback},
-$-- $--   Contextuals=Alternate  % Activate the calt feature
-$-- $-- ]
+\ifXeTeX
+  \usepackage{ucharclasses}
+\fi
 
-$-- \setmonofont{FiraCode-VF}[%
-$--   Contextuals=Alternate % Activate the calt feature
-$-- ]%
+\newif\ifMainFontSet
+\newif\ifSansFontSet
+\newif\ifMonoFontSet
+\newif\ifEmojiFontSet
 
+\ifLuaTeX
+  \newcommand{\EmojiFontFeatures}{Renderer=HarfBuzz,Scale=MatchLowercase}
+\else
+  \newcommand{\EmojiFontFeatures}{Scale=MatchLowercase}
+\fi
 
-$if(noto)$
-  \usepackage{noto}
-$else$
- \usepackage{lmodern}
-$endif$
+\newcommand{\TrySetMainFont}[1]{%
+  \ifMainFontSet\else
+    \IfFontExistsTF{#1}{\setmainfont{#1}\MainFontSettrue}{}%
+  \fi
+}
+\newcommand{\TrySetSansFont}[1]{%
+  \ifSansFontSet\else
+    \IfFontExistsTF{#1}{\setsansfont{#1}\SansFontSettrue}{}%
+  \fi
+}
+\newcommand{\TrySetMonoFont}[1]{%
+  \ifMonoFontSet\else
+    \IfFontExistsTF{#1}{\setmonofont{#1}\MonoFontSettrue}{}%
+  \fi
+}
 
-$if(sans)$
- \renewcommand*\familydefault{\sfdefault}
-$endif$
+\newcommand{\TrySetEmojiFont}[1]{%
+  \ifEmojiFontSet\else
+    \IfFontExistsTF{#1}{\renewcommand{\EmojiFontName}{#1}\EmojiFontSettrue}{}%
+  \fi
+}
+
+\newcommand{\EmojiFontName}{}
+
+% Main font candidates (first available wins)
+\TrySetMainFont{Noto Serif}
+\TrySetMainFont{TeX Gyre Termes}
+\TrySetMainFont{Times New Roman}
+\TrySetMainFont{Times}
+\TrySetMainFont{Latin Modern Roman}
+\TrySetMainFont{Liberation Serif}
+
+% Sans font candidates
+\TrySetSansFont{Noto Sans}
+\TrySetSansFont{TeX Gyre Heros}
+\TrySetSansFont{Arial}
+\TrySetSansFont{Helvetica}
+\TrySetSansFont{Latin Modern Sans}
+\TrySetSansFont{Liberation Sans}
+
+% Mono font candidates
+\TrySetMonoFont{Noto Sans Mono}
+\TrySetMonoFont{DejaVu Sans Mono}
+\TrySetMonoFont{Fira Code}
+\TrySetMonoFont{FiraCode}
+\TrySetMonoFont{Menlo}
+\TrySetMonoFont{Courier New}
+\TrySetMonoFont{Courier}
+\TrySetMonoFont{Latin Modern Mono}
+\TrySetMonoFont{Liberation Mono}
+
+\TrySetEmojiFont{Apple Color Emoji}
+\ifLuaTeX
+  \TrySetEmojiFont{Noto Color Emoji}
+  \TrySetEmojiFont{Segoe UI Emoji}
+\fi
+\TrySetEmojiFont{Noto Emoji}
+\TrySetEmojiFont{Symbola}
+\TrySetEmojiFont{Noto Sans Symbols 2}
+\TrySetEmojiFont{Noto Sans Symbols}
+
+\ifEmojiFontSet
+  \newfontfamily\EmojiFont[\EmojiFontFeatures]{\EmojiFontName}
+
+  % ucharclasses-based font switching (XeTeX only)
+  \ifXeTeX
+    \setDefaultTransitions{\normalfont}{}
+    \setTransitionsFor{Emoji}{\EmojiFont}{\normalfont}
+
+    \setUnicodeClass{Emoji}{2300-23FF}
+    \setUnicodeClass{Emoji}{2600-26FF}
+    \setUnicodeClass{Emoji}{2700-27BF}
+    \setUnicodeClass{Emoji}{1F300-1F5FF}
+    \setUnicodeClass{Emoji}{1F600-1F64F}
+    \setUnicodeClass{Emoji}{1F680-1F6FF}
+    \setUnicodeClass{Emoji}{1F700-1F77F}
+    \setUnicodeClass{Emoji}{1F780-1F7FF}
+    \setUnicodeClass{Emoji}{1F800-1F8FF}
+    \setUnicodeClass{Emoji}{1F900-1F9FF}
+    \setUnicodeClass{Emoji}{1FA00-1FA6F}
+    \setUnicodeClass{Emoji}{1FA70-1FAFF}
+  \fi
+\fi
